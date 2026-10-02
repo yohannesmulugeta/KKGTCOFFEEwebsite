@@ -35,18 +35,14 @@ em { color: #eac396; }
 .brand-name small { opacity: .68; }
 .brand-rule, .site-header--home.site-header--scrolled .brand-rule { background: #f2eadb6b; }
 .brand { gap: 12px; }
-.brand-mark {
-  display: block;
-  flex: none;
+.brand img {
   width: 106px;
   height: 50px;
-  background: #fff;
-  mask-size: contain;
-  mask-position: center;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  -webkit-mask-position: center;
-  -webkit-mask-repeat: no-repeat;
+  object-fit: contain;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  filter: brightness(0) invert(1);
 }
 .brand-name { color: #fff; font-size: 1.03rem; letter-spacing: .18em; }
 .brand-rule { height: 29px; }

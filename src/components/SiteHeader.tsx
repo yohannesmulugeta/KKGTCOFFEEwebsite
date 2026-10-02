@@ -105,14 +105,7 @@ export function SiteHeader() {
     <header className={headerClass}>
       <div className="header-inner wrap">
         <Link className="brand" to="/" aria-label="KKGT Coffee home" onClick={() => closeMobile()}>
-          <span
-            className="brand-mark"
-            aria-hidden="true"
-            style={{
-              maskImage: `url("${mediaUrl('kkgt-logo-transparent.png')}")`,
-              WebkitMaskImage: `url("${mediaUrl('kkgt-logo-transparent.png')}")`,
-            }}
-          />
+          <img src={mediaUrl('kkgt-logo-transparent.png')} width="106" height="50" alt="" />
           <span className="brand-rule" aria-hidden="true" />
           <span className="brand-name">COFFEE</span>
         </Link>
