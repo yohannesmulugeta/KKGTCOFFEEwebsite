@@ -103,17 +103,19 @@ function StoryIllustration({ chapter }: { chapter: number }) {
 }
 
 function ContinuousArtwork({ progress, label }: { progress: MotionValue<number>; label: string }) {
-  const cherryOpacity = useTransform(progress, [0, .17, .39, .47], [1, 1, .55, 0]);
+  const cherryOpacity = useTransform(progress, [0, .18, .37, .45], [1, 1, .55, 0]);
   const leftOpen = useTransform(progress, [.1, .35], [0, -37]);
   const rightOpen = useTransform(progress, [.1, .35], [0, 37]);
-  const seedOpacity = useTransform(progress, [.1, .22, .39, .48], [0, 1, 1, 0]);
-  const beanOpacity = useTransform(progress, [.31, .47, .7, .81], [0, 1, 1, 0]);
+  const seedOpacity = useTransform(progress, [.12, .24, .42, .52], [0, 1, 1, 0]);
+  const beanOpacity = useTransform(progress, [.36, .49, .65, .78], [0, 1, 1, 0]);
   const beanRotate = useTransform(progress, [.3, .65, 1], [-16, 4, 12]);
   const beanScale = useTransform(progress, [.3, .5, .78, 1], [.78, 1, .93, 1.05]);
-  const briefOpacity = useTransform(progress, [.55, .69, .72, .81], [0, 1, 1, 0]);
-  const inquiryOpacity = useTransform(progress, [.62, .7, .73, .81], [0, 1, 1, 0]);
-  const cupOpacity = useTransform(progress, [.7, .81], [0, 1]);
-  const cupScale = useTransform(progress, [.7, .84], [.76, 1]);
+  const briefOpacity = useTransform(progress, [.55, .66, .72, .79], [0, 1, 1, 0]);
+  const inquiryOpacity = useTransform(progress, [.62, .7, .74, .8], [0, 1, 1, 0]);
+  const cupOpacity = useTransform(progress, [.68, .8], [0, 1]);
+  const cupScale = useTransform(progress, [.68, .82], [.76, 1]);
+  const steamOpacity = useTransform(progress, [.79, .9], [0, .62]);
+  const steamY = useTransform(progress, [.8, 1], [7, -8]);
 
   return <div className="coffee-story__art">
     <span className="coffee-story__orbit coffee-story__orbit--one" aria-hidden="true" />
@@ -144,6 +146,9 @@ function ContinuousArtwork({ progress, label }: { progress: MotionValue<number>;
         <ellipse cx="172" cy="175" rx="46" ry="26" fill="#bb784c" opacity=".28" />
         <path d="M147 246c36 29 86 34 125 5" fill="none" stroke="#d99b71" strokeWidth="4" opacity=".25" />
       </motion.g>
+      <motion.g style={{ opacity: steamOpacity, y: steamY }} fill="none" stroke="#f7ead6" strokeWidth="3" strokeLinecap="round">
+        <path d="M157 76c-10-14 13-20 3-36M199 67c-10-14 13-20 3-36M241 76c-10-14 13-20 3-36" />
+      </motion.g>
     </svg>
   </div>;
 }
@@ -151,9 +156,9 @@ function ContinuousArtwork({ progress, label }: { progress: MotionValue<number>;
 export function CoffeeScrollStory() {
   const track = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
-  const [progressPercent, setProgressPercent] = useState(0);
   const reducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: track, offset: ['start start', 'end end'] });
+  const progressLabel = useTransform(scrollYProgress, value => `${Math.round(value * 100)}%`);
   const fieldScene = useTransform(scrollYProgress, [0, .2, .44], [1, 1, 0]);
   const selectionScene = useTransform(scrollYProgress, [.18, .42, .68], [0, 1, 0]);
   const inquiryScene = useTransform(scrollYProgress, [.57, .82, 1], [0, 1, 1]);
@@ -161,15 +166,13 @@ export function CoffeeScrollStory() {
   useMotionValueEvent(scrollYProgress, 'change', value => {
     const next = Math.min(chapters.length - 1, Math.floor(value * chapters.length + 0.01));
     setActive(current => current === next ? current : next);
-    const percentage = Math.round(value * 100);
-    setProgressPercent(current => current === percentage ? current : percentage);
   });
 
   function jumpToChapter(index: number) {
     if (!track.current) return;
     const top = window.scrollY + track.current.getBoundingClientRect().top;
     const distance = track.current.scrollHeight - window.innerHeight;
-    window.scrollTo({ top: top + distance * (index / (chapters.length - 1)), behavior: reducedMotion ? 'auto' : 'smooth' });
+    window.scrollTo({ top: top + distance * ((index + .5) / chapters.length), behavior: reducedMotion ? 'auto' : 'smooth' });
   }
 
   const chapter = chapters[active];
@@ -195,13 +198,13 @@ export function CoffeeScrollStory() {
       <div className="coffee-story__copy-slot"><AnimatePresence initial={false} mode="sync">
         <motion.div key={`copy-${active}`} className="coffee-story__copy" initial={reducedMotion ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={reducedMotion ? undefined : { opacity: 0, y: -10 }} transition={{ duration: .28 }}>
           <span className="coffee-story__eyebrow">0{active + 1} / {chapter.eyebrow}</span>
-          <h1>{chapter.title}</h1>
+          {active === 0 ? <h1>{chapter.title}</h1> : <h2>{chapter.title}</h2>}
           <p>{chapter.text}</p>
           <div className="coffee-story__actions"><Link className="button button--primary" to={chapter.action.to}>{chapter.action.label}<ArrowUpRight size={17} aria-hidden="true" /></Link>{'secondAction' in chapter && <Link className="coffee-story__secondary" to={chapter.secondAction.to}>{chapter.secondAction.label}<ArrowUpRight size={16} aria-hidden="true" /></Link>}</div>
         </motion.div>
       </AnimatePresence></div>
       <div className="coffee-story__art-slot"><ContinuousArtwork progress={scrollYProgress} label={chapter.artLabel} /></div>
-      <aside className="coffee-story__state" aria-label="Current story chapter"><span>CURRENT STATE</span><strong>{chapter.state}</strong><dl><div><dt>JOURNEY</dt><dd>{progressPercent}%</dd></div><div><dt>CHAPTER</dt><dd>0{active + 1}</dd></div><div><dt>ORIGIN</dt><dd>ETHIOPIA</dd></div></dl></aside>
+      <aside className="coffee-story__state" aria-label="Current story chapter"><span>CURRENT STATE</span><strong>{chapter.state}</strong><dl><div><dt>JOURNEY</dt><motion.dd>{progressLabel}</motion.dd></div><div><dt>CHAPTER</dt><dd>0{active + 1}</dd></div><div><dt>ORIGIN</dt><dd>ETHIOPIA</dd></div></dl></aside>
       <div className="coffee-story__cue">{chapter.cue}</div>
       <div className="coffee-story__nav" aria-label="Jump to story chapter">{chapters.map((item, index) => <button key={item.state} type="button" aria-label={`Go to chapter ${index + 1}: ${item.state}`} aria-current={index === active ? 'step' : undefined} onClick={() => jumpToChapter(index)} />)}</div>
       <div className="coffee-story__scroll">SCROLL <ArrowDown size={15} aria-hidden="true" /></div>
