@@ -1,0 +1,31 @@
+{
+  "name": "kkgt-coffee",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "check": "tsc --noEmit",
+    "build": "tsc --noEmit && vite build",
+    "build:pages": "tsc --noEmit && vite build --mode github-pages",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "framer-motion": "13.0.0",
+    "lucide-react": "1.28.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-router-dom": "7.18.2"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.0",
+    "@types/react-dom": "19.2.0",
+    "@vitejs/plugin-react": "6.0.5",
+    "typescript": "7.0.2",
+    "vite": "8.2.0"
+  },
+  "overrides": {
+    "motion-dom": "13.0.0",
+    "motion-utils": "13.0.0"
+  }
+}
