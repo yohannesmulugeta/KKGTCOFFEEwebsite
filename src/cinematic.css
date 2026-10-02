@@ -560,3 +560,115 @@ em { color: #eac396; }
 @media (prefers-reduced-motion: reduce) {
   .origin-map__pin, .coffee-origin-nav a, .journey-step { transition: none; }
 }
+
+/* One transparent coffee branch, composed differently across the story. */
+.coffee-story__viewport::after,
+.origins-preview::before,
+.journey-preview::before,
+.inquiry-band::before,
+.page-intro::before,
+.coffee-story__reduced article:first-child::before {
+  content: '';
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  background-image: var(--botanical-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.coffee-story__viewport::after {
+  z-index: 2;
+  left: -190px;
+  top: 17%;
+  width: clamp(330px, 31vw, 540px);
+  aspect-ratio: 1;
+  opacity: .21;
+  transform: rotate(-24deg);
+  animation: botanical-drift 18s ease-in-out infinite;
+}
+
+.origins-preview,
+.journey-preview,
+.inquiry-band { position: relative; isolation: isolate; overflow: hidden; }
+.origins-preview > .wrap,
+.journey-preview > .wrap,
+.inquiry-band__inner { position: relative; z-index: 1; }
+
+.origins-preview::before {
+  z-index: 0;
+  top: -42px;
+  right: max(6vw, 35px);
+  width: clamp(235px, 24vw, 360px);
+  aspect-ratio: 1;
+  border: 1px solid #d9c39152;
+  border-radius: 50%;
+  background-color: #c4cf9d0b;
+  background-size: 90%;
+  opacity: .38;
+  transform: rotate(16deg);
+}
+
+.journey-preview::before {
+  z-index: 0;
+  right: -190px;
+  top: 20%;
+  width: clamp(260px, 27vw, 410px);
+  height: 480px;
+  border: 1px solid #d9c39142;
+  border-radius: 220px 220px 14px 14px;
+  background-color: #d9c3910b;
+  background-size: 95%;
+  opacity: .26;
+  transform: rotate(12deg);
+}
+
+.inquiry-band::before {
+  z-index: 0;
+  right: -165px;
+  bottom: -245px;
+  width: clamp(360px, 38vw, 590px);
+  aspect-ratio: 1;
+  opacity: .22;
+  transform: rotate(-22deg);
+}
+
+.page-intro::before {
+  z-index: -1;
+  top: 2%;
+  right: 6%;
+  width: min(37vw, 440px);
+  aspect-ratio: 1;
+  opacity: .15;
+  transform: rotate(22deg);
+}
+.page-intro { overflow: hidden; }
+
+.coffee-story__reduced article:first-child { position: relative; isolation: isolate; }
+.coffee-story__reduced article:first-child::before {
+  z-index: -1;
+  left: -85px;
+  top: 8%;
+  width: 340px;
+  aspect-ratio: 1;
+  opacity: .18;
+  transform: rotate(-22deg);
+}
+
+@keyframes botanical-drift {
+  50% { transform: translateY(-12px) rotate(-21deg); }
+}
+
+@media (max-width: 760px) {
+  .coffee-story__viewport::after { left: auto; right: -115px; top: 10%; width: 280px; opacity: .15; }
+  .origins-preview::before { right: -105px; top: 35px; width: 240px; opacity: .24; }
+  .journey-preview::before { right: -120px; top: 31%; width: 245px; height: 340px; opacity: .22; }
+  .inquiry-band::before { right: -120px; bottom: -120px; width: 330px; opacity: .17; }
+  .page-intro::before { right: -100px; top: 10%; width: 260px; opacity: .12; }
+  .coffee-story__reduced article:first-child::before { left: auto; right: -100px; top: 5%; width: 255px; opacity: .12; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coffee-story__viewport::after { animation: none; }
+}
