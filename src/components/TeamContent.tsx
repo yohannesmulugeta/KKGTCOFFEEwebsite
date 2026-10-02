@@ -18,14 +18,14 @@ export function TeamPreview() {
   return <section className="team-preview section">
     <div className="wrap team-preview__head"><div><span className="kicker">OUR TEAM</span><h2>The people behind<br /><em>the conversation.</em></h2></div><div><p>Commercial, quality, and export conversations have people behind them. Meet the KKGT team as this demo takes shape.</p><Link className="inline-link" to="/team">Meet the team <ArrowUpRight size={18} aria-hidden="true" /></Link></div></div>
     <div className="wrap team-grid team-grid--preview">{teamMembers.slice(0, 3).map((member, index) => <TeamCard key={member.name} member={member} index={index} />)}</div>
-    <p className="wrap team-preview__note">Draft roster from KKGT’s corporate content checklist. Names, titles, and portraits are awaiting confirmation.</p>
+    <p className="wrap team-preview__note">Demo roster based on KKGT’s draft content and user updates. Names, titles, and portraits are awaiting confirmation.</p>
   </section>;
 }
 
 export function TeamPage() {
   return <>
     <header className="wrap page-intro team-page-intro"><span className="kicker">OUR TEAM</span><h1>Meet the people<br />behind KKGT.</h1><p>A draft view of the team involved in KKGT’s wider business. Portraits and final profile details will be added when KKGT supplies them.</p></header>
-    <section className="team-page-section section"><div className="wrap"><div className="team-page-section__intro"><h2 className="kicker">A HUMAN BUSINESS</h2><p>Every buyer conversation depends on clear commercial, quality, and export coordination. The names and titles below come from KKGT’s existing draft content list and are draft entries awaiting confirmation.</p></div><div className="team-grid">{teamMembers.map((member, index) => <TeamCard key={member.name} member={member} index={index} />)}</div></div></section>
+    <section className="team-page-section section"><div className="wrap"><div className="team-page-section__intro"><h2 className="kicker">A HUMAN BUSINESS</h2><p>Every buyer conversation depends on clear commercial, quality, and export coordination. This demo roster draws on KKGT’s draft content and user updates; remaining details are awaiting confirmation.</p></div><div className="team-grid">{teamMembers.map((member, index) => <TeamCard key={member.name} member={member} index={index} />)}</div></div></section>
     <section className="team-contact"><div className="wrap"><span className="kicker">SPEAK TO KKGT</span><h2>Start with your coffee requirement.</h2><Link className="button button--primary" to="/contact?interest=coffee">Request Coffee Inquiry <ArrowUpRight size={18} aria-hidden="true" /></Link></div></section>
   </>;
 }

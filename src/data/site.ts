@@ -59,11 +59,11 @@ export const journey = [
   { number: '04', title: 'Coordinate shipment', detail: 'Packing, documentation, and delivery terms are agreed for the transaction.' },
 ] as const;
 
-// Draft roster transcribed from the corporate DATA_REQUIRED.md. Confirm spelling,
-// current roles, and portraits with KKGT before publishing this section.
+// Demo roster adapted from the corporate DATA_REQUIRED.md and user updates.
+// Confirm current roles and portraits with KKGT before treating it as verified company information.
 export const teamMembers = [
   { name: 'Kalbessa Kekeba', role: 'CEO', initials: 'KK', portrait: '' },
-  { name: 'Gezahegn Legesse', role: 'Deputy General Manager', initials: 'GL', portrait: '' },
+  { name: 'Firaol Kelbesa', role: 'Deputy General Manager', initials: 'FK', portrait: '' },
   { name: 'Diriba Mengesha', role: 'Quality Manager', initials: 'DM', portrait: '' },
   { name: 'Seada Kamale', role: 'Export Operations', initials: 'SK', portrait: '' },
   { name: 'Embet Berhanu', role: 'Finance Department Head', initials: 'EB', portrait: '' },
