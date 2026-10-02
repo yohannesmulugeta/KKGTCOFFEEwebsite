@@ -34,7 +34,22 @@ em { color: #eac396; }
 .site-header--home.site-header--scrolled .brand-name small { color: var(--cream); }
 .brand-name small { opacity: .68; }
 .brand-rule, .site-header--home.site-header--scrolled .brand-rule { background: #f2eadb6b; }
-.brand img { background: #f5f2e9; padding: 2px; border-radius: 2px; }
+.brand { gap: 12px; }
+.brand-mark {
+  display: block;
+  flex: none;
+  width: 106px;
+  height: 50px;
+  background: #fff;
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+}
+.brand-name { color: #fff; font-size: 1.03rem; letter-spacing: .18em; }
+.brand-rule { height: 29px; }
 .nav-main > a, .nav-dropdown > summary { color: var(--cream); }
 .nav-main > a:hover, .nav-main > a.active, .nav-dropdown > summary:hover,
 .nav-dropdown[open] > summary, .nav-dropdown:has(a.active) > summary { color: #f4aa75; }
@@ -309,13 +324,6 @@ em { color: #eac396; }
 }
 
 /* Continuous, centered scroll scene. The object stays mounted while its layers transform. */
-.brand img {
-  background: transparent;
-  padding: 0;
-  border-radius: 0;
-  filter: grayscale(1) invert(1) brightness(4) contrast(20);
-  mix-blend-mode: screen;
-}
 .coffee-story__viewport {
   display: block;
   padding: 0;

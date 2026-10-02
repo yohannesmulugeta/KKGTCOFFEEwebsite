@@ -105,9 +105,16 @@ export function SiteHeader() {
     <header className={headerClass}>
       <div className="header-inner wrap">
         <Link className="brand" to="/" aria-label="KKGT Coffee home" onClick={() => closeMobile()}>
-          <img src={mediaUrl('kkgt-logo.svg')} width="90" height="43" alt="KKGT Import Export" />
+          <span
+            className="brand-mark"
+            aria-hidden="true"
+            style={{
+              maskImage: `url("${mediaUrl('kkgt-logo-transparent.png')}")`,
+              WebkitMaskImage: `url("${mediaUrl('kkgt-logo-transparent.png')}")`,
+            }}
+          />
           <span className="brand-rule" aria-hidden="true" />
-          <span className="brand-name">COFFEE<small>ETHIOPIAN ORIGINS</small></span>
+          <span className="brand-name">COFFEE</span>
         </Link>
 
         <nav className="nav-main" aria-label="Main navigation">
@@ -126,7 +133,6 @@ export function SiteHeader() {
               {storyLinks.map(item => <NavLink key={item.to} to={item.to}>{item.label}<ArrowUpRight size={16} aria-hidden="true" /></NavLink>)}
             </div>
           </details>
-          <NavLink to="/contact">Contact</NavLink>
         </nav>
         <Link className="header-cta" to="/contact?interest=coffee">Request Coffee Inquiry <ArrowUpRight size={16} aria-hidden="true" /></Link>
         <button ref={trigger} className="menu-trigger" type="button" aria-label={mobileOpen ? 'Close menu' : 'Open menu'} aria-controls="mobile-menu" aria-expanded={mobileOpen} onClick={() => mobileOpen ? closeMobile(true) : setMobileOpen(true)}>{mobileOpen ? <X size={25} /> : <Menu size={25} />}</button>
@@ -142,7 +148,6 @@ export function SiteHeader() {
           {coffeeLinks.map(item => <NavLink key={item.to} to={item.to} onClick={() => closeMobile()}>{item.label}<ArrowUpRight size={18} aria-hidden="true" /></NavLink>)}
           <span className="mobile-panel__label">DISCOVER</span>
           {storyLinks.map(item => <NavLink key={item.to} to={item.to} onClick={() => closeMobile()}>{item.label}<ArrowUpRight size={18} aria-hidden="true" /></NavLink>)}
-          <NavLink to="/contact" onClick={() => closeMobile()}>Contact <ArrowUpRight size={18} aria-hidden="true" /></NavLink>
         </nav>
         <Link className="button button--primary mobile-panel__cta" to="/contact?interest=coffee" onClick={() => closeMobile()}>Request Coffee Inquiry <ArrowUpRight size={18} aria-hidden="true" /></Link>
       </div>
