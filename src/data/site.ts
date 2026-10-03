@@ -6,7 +6,7 @@ export const company = {
   email: 'info@kkgtimportexport.com',
   phone: '+251 99 182 8202',
   phoneHref: '+251991828202',
-  corporateUrl: 'https://yohannesmulugeta.github.io/kkgt-website/',
+  corporateUrl: 'https://kkgtimportexport.com/',
 } as const;
 
 export type Origin = {
