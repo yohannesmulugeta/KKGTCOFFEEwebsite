@@ -42,7 +42,6 @@ em { color: #eac396; }
   background: transparent;
   padding: 0;
   border-radius: 0;
-  filter: brightness(0) invert(1);
 }
 .brand-name { color: #fff; font-size: 1.03rem; letter-spacing: .18em; }
 .brand-rule { height: 29px; }
