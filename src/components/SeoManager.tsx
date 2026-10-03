@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { origins } from '../data/site';
 
 const SITE_URL = 'https://kkgtcoffee.com';
-const DEFAULT_IMAGE = `${SITE_URL}/media/ethiopian-highlands.webp`;
+const DEFAULT_IMAGE = `${SITE_URL}/media/social-preview.jpg`;
 
 type SeoMeta = {
   title: string;
