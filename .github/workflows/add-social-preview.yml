@@ -1,0 +1,30 @@
+name: Add social preview image
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/add-social-preview.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  add-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download social preview
+        run: |
+          mkdir -p public/media
+          curl -fL --retry 3 --retry-delay 2             'https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:c183792f-c03f-4ddb-8421-d0f92c16907c'             -o public/media/social-preview.jpg
+          test -s public/media/social-preview.jpg
+          file public/media/social-preview.jpg
+      - name: Commit preview image
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/media/social-preview.jpg
+          git diff --cached --quiet && exit 0
+          git commit -m "Add KKGT Coffee social preview image"
+          git push
