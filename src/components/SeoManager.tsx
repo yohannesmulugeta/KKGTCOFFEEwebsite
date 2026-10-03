@@ -31,10 +31,6 @@ const fixedMeta: Record<string, SeoMeta> = {
     description: 'See the buyer journey from origin and requirements through offer review, quality information and shipment coordination.',
     image: `${SITE_URL}/media/coffee-cherries.webp`,
   },
-  '/team': {
-    title: 'KKGT Coffee Team | KKGT Coffee',
-    description: 'Meet the team presented on the KKGT Coffee website and find the right path for a green coffee inquiry.',
-  },
   '/gallery': {
     title: 'Coffee Gallery | KKGT Coffee',
     description: 'Explore visual highlights from KKGT Coffee and its Ethiopian coffee origin experience.',
