@@ -104,7 +104,7 @@ export function SiteHeader() {
     <header className={headerClass}>
       <div className="header-inner wrap">
         <Link className="brand" to="/" aria-label="KKGT Coffee home" onClick={() => closeMobile()}>
-          <img src={mediaUrl('kkgt-logo.svg')} width="106" height="50" alt="" />
+          <img src={mediaUrl('kkgt-logo-header.webp')} width="106" height="50" alt="" />
           <span className="brand-rule" aria-hidden="true" />
           <span className="brand-name">COFFEE</span>
         </Link>
