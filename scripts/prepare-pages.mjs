@@ -16,7 +16,6 @@ const routeMeta = {
   '/coffee': ['Ethiopian Green Coffee | KKGT Coffee', 'Explore KKGT’s Ethiopian green coffee portfolio and start with an origin before confirming current lot details, specifications and availability.', '/media/green-coffee.webp'],
   '/origins': ['Ethiopian Coffee Origins | KKGT Coffee', 'Explore Yirgacheffe, Sidama, Limmu, Jimma and Lekempti coffee origins in KKGT’s published Ethiopian coffee portfolio.', '/media/ethiopian-highlands.webp'],
   '/journey': ['Coffee Journey & Quality | KKGT Coffee', 'See the buyer journey from origin and requirements through offer review, quality information and shipment coordination.', '/media/coffee-cherries.webp'],
-  '/team': ['KKGT Coffee Team | KKGT Coffee', 'Meet the team presented on the KKGT Coffee website and find the right path for a green coffee inquiry.', '/media/ethiopian-highlands.webp'],
   '/gallery': ['Coffee Gallery | KKGT Coffee', 'Explore visual highlights from KKGT Coffee and its Ethiopian coffee origin experience.', '/media/coffee-cherries.webp'],
   '/about': ['About KKGT Coffee | Ethiopian Coffee Export', 'Learn about the KKGT Coffee website and its focus on connecting green coffee buyers with KKGT Import Export’s Ethiopian origin portfolio.', '/media/ethiopian-highlands.webp'],
   '/contact': ['Coffee Inquiry | KKGT Coffee', 'Contact KKGT with your Ethiopian green coffee requirements, including origin, quantity, destination, timing and specifications.', '/media/green-coffee.webp'],
