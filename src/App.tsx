@@ -2,8 +2,9 @@ import { mediaUrl } from './media';
 import { useEffect, useState, type CSSProperties, type FormEvent, type ReactNode } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, Mail, MapPin, Phone } from 'lucide-react';
-import { Link, Route, Routes, useLocation, useParams, useSearchParams } from 'react-router-dom';
+import { Link, Route, Routes, useParams, useSearchParams } from 'react-router-dom';
 import { SiteHeader } from './components/SiteHeader';
+import { SeoManager } from './components/SeoManager';
 import { SiteFooter } from './components/SiteFooter';
 import { TeamPage, TeamPreview } from './components/TeamContent';
 import { GalleryPage, GalleryTeaser } from './components/GalleryContent';
@@ -107,26 +108,6 @@ function Contact() {
 
 function NotFound() { return <div className="not-found wrap"><Kicker>PAGE NOT FOUND</Kicker><h1>We lost this trail.</h1><p>The page you requested is not part of this coffee site.</p><ButtonLink to="/">Return home</ButtonLink></div>; }
 
-function RouteEffects() {
-  const location = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    const titles: Record<string, string> = {
-      '/': 'Ethiopian Origins',
-      '/coffee': 'Our Coffee',
-      '/origins': 'Explore Origins',
-      '/journey': 'Journey & Quality',
-      '/team': 'Our Team',
-      '/gallery': 'Gallery',
-      '/about': 'About KKGT',
-      '/contact': 'Coffee Inquiry',
-    };
-    const origin = origins.find(item => location.pathname === `/coffee/${item.slug}`);
-    document.title = `${titles[location.pathname] ?? origin?.name ?? 'Page Not Found'} | KKGT Coffee`;
-  }, [location.pathname]);
-  return null;
-}
-
 export default function App() {
-  return <><RouteEffects /><SiteHeader /><main id="main" tabIndex={-1} style={{ '--botanical-image': `url("${mediaUrl('coffee-botanical.png')}")` } as CSSProperties}><Routes><Route path="/" element={<Home />} /><Route path="/coffee" element={<Coffee />} /><Route path="/origins" element={<Origins />} /><Route path="/coffee/:slug" element={<OriginDetail />} /><Route path="/journey" element={<Journey />} /><Route path="/team" element={<TeamPage />} /><Route path="/gallery" element={<GalleryPage />} /><Route path="/about" element={<About />} /><Route path="/contact" element={<Contact />} /><Route path="*" element={<NotFound />} /></Routes></main><SiteFooter /></>;
+  return <><SeoManager /><SiteHeader /><main id="main" tabIndex={-1} style={{ '--botanical-image': `url("${mediaUrl('coffee-botanical.png')}")` } as CSSProperties}><Routes><Route path="/" element={<Home />} /><Route path="/coffee" element={<Coffee />} /><Route path="/origins" element={<Origins />} /><Route path="/coffee/:slug" element={<OriginDetail />} /><Route path="/journey" element={<Journey />} /><Route path="/team" element={<TeamPage />} /><Route path="/gallery" element={<GalleryPage />} /><Route path="/about" element={<About />} /><Route path="/contact" element={<Contact />} /><Route path="*" element={<NotFound />} /></Routes></main><SiteFooter /></>;
 }
