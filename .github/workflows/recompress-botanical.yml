@@ -1,0 +1,32 @@
+name: Recompress botanical image
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/recompress-botanical.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Recompress decorative botanical image
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq webp
+          cwebp -quiet -q 60 -alpha_q 75 public/media/coffee-botanical.png -o public/media/coffee-botanical.webp
+          test -s public/media/coffee-botanical.webp
+          ls -lh public/media/coffee-botanical.webp
+      - name: Commit optimized image
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/media/coffee-botanical.webp
+          git diff --cached --quiet && exit 0
+          git commit -m "Further optimize decorative botanical image"
+          git pull --rebase origin main
+          git push
