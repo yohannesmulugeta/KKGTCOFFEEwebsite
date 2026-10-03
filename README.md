@@ -1,53 +1,50 @@
-# KKGT Coffee — public demo
+# KKGT Coffee — Website Source Code
 
-A dedicated React/Vite/TypeScript coffee experience for KKGT Import Export. This repository is separate from the corporate `kkgt website` repository.
+> **Official website:** https://kkgtcoffee.com/
 
-Live demo: https://yohannesmulugeta.github.io/KKGTCOFFEEwebsite/
+This repository contains the source code for the official **KKGT Coffee** website, focused on Ethiopian green coffee origins and buyer inquiries.
 
-The current local design uses a five-chapter scroll story on the homepage and a matching dark forest, olive, cream, and KKGT orange visual theme across the other pages. The artwork moves from coffee cherry through green bean to an illustrative cup. The original copy, origin pages, Team and Gallery sections, and email-draft inquiry path remain. Visitors who request reduced motion see the chapters as regular stacked sections.
+For the public coffee website, visit **https://kkgtcoffee.com/**.  
+For the wider KKGT business, visit **https://kkgtimportexport.com/**.
 
-## Run locally
+The GitHub repository is for website development and version control; it is **not the primary public coffee website**.
 
-```powershell
-npm.cmd install
-npm.cmd run dev -- --port 5174 --strictPort
-```
+## Technology
 
-Open the URL printed by Vite. Build verification:
+- React
+- Vite
+- TypeScript
+- React Router
+- Framer Motion
+- Cloudflare production deployment
 
-```powershell
-npm.cmd run check
-npm.cmd run build
-npm.cmd run build:pages
-```
-
-## Routes
+## Main public routes
 
 - `/` — home
-- `/coffee` — buyer-focused coffee portfolio
+- `/coffee` — Ethiopian green coffee portfolio
 - `/origins` — origin index
-- `/coffee/:slug` — one page for each of the five named origins
+- `/coffee/:slug` — individual origin pages
 - `/journey` — quality and buyer journey
-- `/team` — draft team roster with portrait slots
-- `/gallery` — illustrative image gallery ready for KKGT photography
-- `/about` — KKGT context
-- `/contact` — inquiry draft and direct channels
+- `/gallery` — coffee gallery
+- `/about` — KKGT Coffee context
+- `/contact` — coffee inquiry
 
-## Content and media
+## Production
 
-The KKGT logo, brand colors, company channels, and five origins were taken from the existing corporate repository. The corporate site URL was checked and returned HTTP 200 on 2026-10-02. The three WebP images were generated for this demo and are **illustrative**, not photos of KKGT farms, employees, facilities, or actual lots.
+The public production domain is:
 
-The Team page uses six draft names and titles from the corporate repository's `DATA_REQUIRED.md`. It shows neutral SVG silhouettes in place of portraits. Confirm every name and role and provide approved portraits before treating the demo as verified company information. The origin map is illustrative and its markers are approximate.
+**https://kkgtcoffee.com/**
 
-The form creates a `mailto:` draft in the visitor's email app. It does not submit, store, or deliver anything on its own. A production form needs a real endpoint, spam protection, and a delivery test. See [CONTENT_CHECKLIST.md](CONTENT_CHECKLIST.md) for remaining verification work.
+The live sitemap is:
 
-Local development uses browser history routes. The GitHub Pages build uses hash routes such as `/#/coffee` and `/#/contact`, so direct links work on static hosting. GitHub Actions builds and deploys the Pages version on each push to `main`.
+**https://kkgtcoffee.com/sitemap-v2.xml**
 
-## Initial review captures
+Changes pushed to `main` are built and deployed through the project's connected deployment workflow. Search engines and customers should use the production domain above rather than a GitHub URL.
 
-- `output/screenshots/home-desktop.png` — full desktop homepage at 1440 px
-- `output/screenshots/home-mobile.png` — full mobile homepage at 390 px
-- `output/clips/origin-card-hover.webm` — short desktop card interaction
-- `output/clips/mobile-menu.webm` — short mobile menu and route interaction
+## Content notes
 
-These captures show the first local design before the navigation, Team, Gallery, footer, and scroll-story expansion. They are not current screenshots or deployment evidence.
+Coffee imagery used on the site is illustrative unless specifically identified otherwise; it does not document a particular KKGT farm, facility, employee, or lot. Current grade, process, crop year, quantity, packing, certification, and availability should be confirmed for the specific commercial offer.
+
+## Contact behavior
+
+The inquiry form prepares a `mailto:` draft in the visitor's email application. It does not store inquiry data on the website.
