@@ -12,7 +12,7 @@ let sitemap = readFileSync(sitemapPath, 'utf8');
 const baseHtml = readFileSync(resolve(outputRoot, 'index.html'), 'utf8');
 
 const routeMeta = {
-  '/': ['KKGT Coffee | Ethiopian Green Coffee Origins', 'Explore Ethiopian coffee origins with KKGT and start a direct green coffee inquiry.', '/media/ethiopian-highlands.webp'],
+  '/': ['KKGT Coffee | Ethiopian Green Coffee Origins', 'Explore Ethiopian coffee origins with KKGT and start a direct green coffee inquiry.', '/media/social-preview.jpg'],
   '/coffee': ['Ethiopian Green Coffee | KKGT Coffee', 'Explore KKGT’s Ethiopian green coffee portfolio and start with an origin before confirming current lot details, specifications and availability.', '/media/green-coffee.webp'],
   '/origins': ['Ethiopian Coffee Origins | KKGT Coffee', 'Explore Yirgacheffe, Sidama, Limmu, Jimma and Lekempti coffee origins in KKGT’s published Ethiopian coffee portfolio.', '/media/ethiopian-highlands.webp'],
   '/journey': ['Coffee Journey & Quality | KKGT Coffee', 'See the buyer journey from origin and requirements through offer review, quality information and shipment coordination.', '/media/coffee-cherries.webp'],
@@ -39,7 +39,7 @@ function injectMeta(html, route, noindex = false) {
   const [title, description, imagePath] = routeMeta[route] ?? [
     'KKGT Coffee',
     'Explore Ethiopian coffee origins with KKGT.',
-    '/media/ethiopian-highlands.webp',
+    '/media/social-preview.jpg',
   ];
   const canonical = route === '/' ? `${siteBase}/` : `${siteBase}${route}`;
   const image = `${siteBase}${imagePath}`;
