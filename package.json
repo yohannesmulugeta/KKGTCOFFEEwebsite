@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "check": "tsc --noEmit",
-    "build": "tsc --noEmit && vite build",
-    "build:pages": "tsc --noEmit && vite build --mode github-pages",
+    "build": "tsc --noEmit && vite build && node scripts/prepare-pages.mjs",
+    "build:pages": "tsc --noEmit && vite build --mode github-pages && node scripts/prepare-pages.mjs --github-pages",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {
