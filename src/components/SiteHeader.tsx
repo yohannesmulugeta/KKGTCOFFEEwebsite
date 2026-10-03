@@ -10,7 +10,6 @@ const coffeeLinks = [
 
 const storyLinks = [
   { to: '/journey', label: 'Journey / Quality' },
-  { to: '/team', label: 'Our Team' },
   { to: '/gallery', label: 'Gallery' },
   { to: '/about', label: 'About KKGT' },
 ];
