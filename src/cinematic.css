@@ -671,3 +671,49 @@ em { color: #eac396; }
 @media (prefers-reduced-motion: reduce) {
   .coffee-story__viewport::after { animation: none; }
 }
+
+
+/* Accessibility hardening: preserve the visual dots while making the whole control touch-friendly. */
+.footer-invitation .button.button--primary {
+  background: #b9470f;
+  color: #fff;
+}
+.footer-invitation .button.button--primary:hover,
+.footer-invitation .button.button--primary:focus-visible {
+  background: #99380b;
+}
+.coffee-story__nav { gap: 0; }
+.coffee-story__nav button {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+}
+.coffee-story__nav button::before {
+  content: '';
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 14px;
+  height: 14px;
+  transform: translate(-50%, -50%);
+  border: 1px solid #eae7d188;
+  border-radius: 50%;
+  background: #eae7d13d;
+  transition: background .2s ease, transform .2s ease, border-color .2s ease;
+}
+.coffee-story__nav button:hover,
+.coffee-story__nav button[aria-current] {
+  background: transparent;
+  transform: none;
+}
+.coffee-story__nav button:hover::before,
+.coffee-story__nav button[aria-current]::before {
+  background: #f2bc8b;
+  border-color: #f2bc8b;
+  transform: translate(-50%, -50%) scale(1.08);
+}
+@media (max-width: 760px) {
+  .coffee-story__nav { right: 8px; bottom: 6px; }
+  .coffee-story__nav button { width: 44px; height: 44px; }
+}

@@ -20,7 +20,6 @@ const fixedMeta: Record<string, SeoMeta> = {
   '/coffee': {
     title: 'Ethiopian Green Coffee | KKGT Coffee',
     description: 'Explore KKGT’s Ethiopian green coffee portfolio and start with an origin before confirming current lot details, specifications and availability.',
-    image: `${SITE_URL}/media/green-coffee.webp`,
   },
   '/origins': {
     title: 'Ethiopian Coffee Origins | KKGT Coffee',
@@ -29,7 +28,6 @@ const fixedMeta: Record<string, SeoMeta> = {
   '/journey': {
     title: 'Coffee Journey & Quality | KKGT Coffee',
     description: 'See the buyer journey from origin and requirements through offer review, quality information and shipment coordination.',
-    image: `${SITE_URL}/media/coffee-cherries.webp`,
   },
   '/gallery': {
     title: 'Coffee Gallery | KKGT Coffee',
@@ -70,7 +68,6 @@ function getMeta(pathname: string): SeoMeta {
       return {
         title: `${origin.name} Coffee | KKGT Coffee`,
         description: `${origin.short} Ask KKGT about current lot details, process, grade, quantity, packing and availability.`,
-        image: absoluteUrl(origin.image),
       };
     }
   }
@@ -108,9 +105,7 @@ export function SeoManager() {
   useEffect(() => {
     const path = normalizePath(pathname);
     const meta = getMeta(path);
-    const canonical = path === '/' ? `${SITE_URL}/` : `${SITE_URL}${path}`;
-    const image = absoluteUrl(meta.image);
-
+    const canonical = path === '/' ? `${SITE_URL}/` : `${SITE_URL}${path}/`;
     document.title = meta.title;
     setCanonical(canonical);
     setMeta('name', 'description', meta.description);
@@ -120,12 +115,16 @@ export function SeoManager() {
     setMeta('property', 'og:type', 'website');
     setMeta('property', 'og:site_name', 'KKGT Coffee');
     setMeta('property', 'og:url', canonical);
-    setMeta('property', 'og:image', image);
+    setMeta('property', 'og:image', DEFAULT_IMAGE);
+    setMeta('property', 'og:image:type', 'image/jpeg');
+    setMeta('property', 'og:image:width', '1200');
+    setMeta('property', 'og:image:height', '630');
     setMeta('property', 'og:image:alt', 'KKGT Coffee');
     setMeta('name', 'twitter:card', 'summary_large_image');
     setMeta('name', 'twitter:title', meta.title);
     setMeta('name', 'twitter:description', meta.description);
-    setMeta('name', 'twitter:image', image);
+    setMeta('name', 'twitter:image', DEFAULT_IMAGE);
+    setMeta('name', 'twitter:image:alt', 'KKGT Coffee');
 
     let schema = document.getElementById('seo-webpage-schema') as HTMLScriptElement | null;
     if (!schema) {

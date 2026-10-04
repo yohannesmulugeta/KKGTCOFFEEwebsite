@@ -209,6 +209,6 @@ export function CoffeeScrollStory() {
       <div className="coffee-story__nav" aria-label="Jump to story chapter">{chapters.map((item, index) => <button key={item.state} type="button" aria-label={`Go to chapter ${index + 1}: ${item.state}`} aria-current={index === active ? 'step' : undefined} onClick={() => jumpToChapter(index)} />)}</div>
       <div className="coffee-story__scroll">SCROLL <ArrowDown size={15} aria-hidden="true" /></div>
     </div>
-    <div className="coffee-story__reduced">{chapters.map((item, index) => <article key={item.state}><div className="coffee-story__reduced-art"><StoryIllustration chapter={index} /></div><span className="coffee-story__eyebrow">0{index + 1} / {item.eyebrow}</span>{index === 0 ? <h1>{item.title}</h1> : <h2>{item.title}</h2>}<p>{item.text}</p><Link className="button button--primary" to={item.action.to}>{item.action.label}<ArrowUpRight size={17} aria-hidden="true" /></Link></article>)}</div>
+    <div className="coffee-story__reduced">{chapters.map((item, index) => <article key={item.state}><div className="coffee-story__reduced-art"><StoryIllustration chapter={index} /></div><span className="coffee-story__eyebrow">0{index + 1} / {item.eyebrow}</span><h2>{item.title}</h2><p>{item.text}</p><Link className="button button--primary" to={item.action.to}>{item.action.label}<ArrowUpRight size={17} aria-hidden="true" /></Link></article>)}</div>
   </section>;
 }
