@@ -8,7 +8,6 @@ const DEFAULT_IMAGE = `${SITE_URL}/media/social-preview.jpg`;
 type SeoMeta = {
   title: string;
   description: string;
-  image?: string;
   noindex?: boolean;
 };
 
@@ -48,14 +47,6 @@ function normalizePath(pathname: string) {
   return pathname.replace(/\/+$/, '') || '/';
 }
 
-function absoluteUrl(value?: string) {
-  if (!value) return DEFAULT_IMAGE;
-  try {
-    return new URL(value, SITE_URL).href;
-  } catch {
-    return DEFAULT_IMAGE;
-  }
-}
 
 function getMeta(pathname: string): SeoMeta {
   const path = normalizePath(pathname);
