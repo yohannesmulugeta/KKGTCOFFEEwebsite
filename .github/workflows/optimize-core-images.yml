@@ -1,0 +1,39 @@
+name: Optimize core coffee images
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/optimize-core-images.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Recompress core WebP images
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq webp
+          for name in ethiopian-highlands green-coffee coffee-cherries; do
+            dwebp "public/media/$name.webp" -o "/tmp/$name.png" >/dev/null 2>&1
+            cwebp -quiet -q 78 -m 6 "/tmp/$name.png" -o "/tmp/$name.webp"
+            old=$(stat -c%s "public/media/$name.webp")
+            new=$(stat -c%s "/tmp/$name.webp")
+            if [ "$new" -lt "$old" ]; then
+              mv "/tmp/$name.webp" "public/media/$name.webp"
+            fi
+          done
+          ls -lh public/media/ethiopian-highlands.webp public/media/green-coffee.webp public/media/coffee-cherries.webp
+      - name: Commit optimized images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/media/ethiopian-highlands.webp public/media/green-coffee.webp public/media/coffee-cherries.webp
+          git diff --cached --quiet && exit 0
+          git commit -m "Optimize core coffee imagery"
+          git pull --rebase origin main
+          git push
