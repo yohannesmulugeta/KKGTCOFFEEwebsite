@@ -22,7 +22,7 @@ const fixedMeta: Record<string, SeoMeta> = {
   },
   '/origins': {
     title: 'Ethiopian Coffee Origins | KKGT Coffee',
-    description: 'Explore Yirgacheffe, Sidama, Limmu, Jimma and Lekempti coffee origins in KKGT’s published Ethiopian coffee portfolio.',
+    description: 'Explore Guji, Nekemte, Yirgacheffe, Sidama, Limmu and Jimma coffee origins with KKGT.',
   },
   '/journey': {
     title: 'Coffee Journey & Quality | KKGT Coffee',

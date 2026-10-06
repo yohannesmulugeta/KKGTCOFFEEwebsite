@@ -1,5 +1,6 @@
 import { mediaUrl } from '../media';
-// Origin names and company channels are adapted from the existing KKGT corporate repository.
+// Original origin names and company channels are adapted from the KKGT corporate repository.
+// Guji and the preferred Nekemte label were requested by the user for this coffee site.
 // Lot specifications and company facilities remain unconfirmed; see CONTENT_CHECKLIST.md.
 export const company = {
   name: 'KKGT Import Export',
@@ -20,6 +21,18 @@ export type Origin = {
 };
 
 export const origins: Origin[] = [
+  {
+    slug: 'guji', name: 'Guji', region: 'Ethiopia',
+    short: 'Explore Guji coffee with KKGT and ask about current availability.',
+    story: 'Guji gives buyers another Ethiopian origin to explore. Share your buying requirements so KKGT can confirm the current lot, grade, process, quantity, and availability.',
+    image: mediaUrl('coffee-cherries.webp'), imageAlt: 'Illustrative close view of coffee cherries on a branch',
+  },
+  {
+    slug: 'lekempti', name: 'Nekemte', region: 'Western Oromia · Ethiopia',
+    short: 'A western Ethiopian coffee origin to explore with KKGT.',
+    story: 'Ask KKGT to confirm the available Nekemte coffee, lot details, and shipment requirements for a specific inquiry.',
+    image: mediaUrl('green-coffee.webp'), imageAlt: 'Illustrative green coffee beans on a woven tray',
+  },
   {
     slug: 'yirgacheffe', name: 'Yirgacheffe', region: 'Gedeo area · Southern Ethiopia',
     short: 'A highland name from southern Ethiopia, and one of KKGT’s listed coffee origins.',
@@ -43,12 +56,6 @@ export const origins: Origin[] = [
     short: 'An established southwestern coffee name listed by KKGT.',
     story: 'Jimma is widely connected with southwestern Ethiopian coffee country. Ask KKGT for the current lot details that matter to your purchase, including preparation, volume, and packing.',
     image: mediaUrl('ethiopian-highlands.webp'), imageAlt: 'Illustrative Ethiopian highland coffee landscape',
-  },
-  {
-    slug: 'lekempti', name: 'Lekempti', region: 'Western Oromia · Ethiopia',
-    short: 'A western Ethiopian trade origin in KKGT’s coffee portfolio.',
-    story: 'Lekempti is associated with the wider Nekemte area of western Ethiopia. KKGT can confirm the available origin, lot details, and shipment requirements for a specific inquiry.',
-    image: mediaUrl('coffee-cherries.webp'), imageAlt: 'Illustrative coffee cherries growing among green leaves',
   },
 ];
 

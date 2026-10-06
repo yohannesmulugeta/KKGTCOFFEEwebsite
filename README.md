@@ -23,7 +23,7 @@ The GitHub repository is for website development and version control; it is **no
 - `/` — home
 - `/coffee` — Ethiopian green coffee portfolio
 - `/origins` — origin index
-- `/coffee/:slug` — individual origin pages
+- `/coffee/:slug` — one page for each of the six named origins
 - `/journey` — quality and buyer journey
 - `/gallery` — coffee gallery
 - `/about` — KKGT Coffee context
@@ -44,6 +44,8 @@ Changes pushed to `main` are built and deployed through the project's connected 
 ## Content notes
 
 Coffee imagery used on the site is illustrative unless specifically identified otherwise; it does not document a particular KKGT farm, facility, employee, or lot. Current grade, process, crop year, quantity, packing, certification, and availability should be confirmed for the specific commercial offer.
+
+Guji and the Nekemte label were added to the six-origin list at the user's request. The existing `/coffee/lekempti` URL remains valid for Nekemte.
 
 ## Contact behavior
 

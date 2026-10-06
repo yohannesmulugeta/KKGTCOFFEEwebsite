@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { origins } from '../data/site';
 
 const markers = [
+  { slug: 'guji', left: '78%', top: '56%', side: 'left' },
   { slug: 'lekempti', left: '30%', top: '43%' },
   { slug: 'jimma', left: '42%', top: '62%' },
   { slug: 'limmu', left: '47%', top: '52%' },

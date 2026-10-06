@@ -26,8 +26,8 @@ const chapters = [
   {
     eyebrow: 'COFFEE WITH A SENSE OF PLACE',
     title: <>Rooted in Ethiopia.<br /><em>Ready for conversation.</em></>,
-    text: 'KKGT’s public coffee portfolio names five Ethiopian origins. This site gives each a clear place to start, while current grade, process, quantity, and availability are discussed for the actual lot.',
-    state: 'Five named origins',
+    text: 'Explore six Ethiopian coffee origins, then discuss current grade, process, quantity, and availability for the actual lot with KKGT.',
+    state: 'Six named origins',
     cue: 'ORIGIN · GREEN COFFEE',
     action: { label: 'Discover Our Coffee', to: '/coffee' },
     artLabel: 'Illustrative green coffee bean',

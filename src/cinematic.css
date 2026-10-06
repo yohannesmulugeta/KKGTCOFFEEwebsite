@@ -475,7 +475,7 @@ em { color: #eac396; }
 /* Buyers can reach each origin before scrolling through the full portfolio. */
 .coffee-origin-nav {
   display: grid;
-  grid-template-columns: 1.2fr repeat(5, minmax(0, 1fr));
+  grid-template-columns: 1.2fr repeat(6, minmax(0, 1fr));
   gap: 0;
   align-items: stretch;
   padding-block: 22px;
@@ -583,7 +583,7 @@ em { color: #eac396; }
   top: 17%;
   width: clamp(330px, 31vw, 540px);
   aspect-ratio: 1;
-  opacity: .21;
+  opacity: .3;
   transform: rotate(-24deg);
   animation: botanical-drift 18s ease-in-out infinite;
 }
@@ -611,7 +611,7 @@ em { color: #eac396; }
 
 .journey-preview::before {
   z-index: 0;
-  right: -190px;
+  right: -80px;
   top: 20%;
   width: clamp(260px, 27vw, 410px);
   height: 480px;
@@ -619,17 +619,18 @@ em { color: #eac396; }
   border-radius: 220px 220px 14px 14px;
   background-color: #d9c3910b;
   background-size: 95%;
-  opacity: .26;
+  opacity: .4;
+  mask-image: linear-gradient(90deg, transparent 8%, #000 56%);
   transform: rotate(12deg);
 }
 
 .inquiry-band::before {
   z-index: 0;
-  right: -165px;
-  bottom: -245px;
+  right: -85px;
+  bottom: -195px;
   width: clamp(360px, 38vw, 590px);
   aspect-ratio: 1;
-  opacity: .22;
+  opacity: .28;
   transform: rotate(-22deg);
 }
 
@@ -639,7 +640,7 @@ em { color: #eac396; }
   right: 6%;
   width: min(37vw, 440px);
   aspect-ratio: 1;
-  opacity: .15;
+  opacity: .25;
   transform: rotate(22deg);
 }
 .page-intro { overflow: hidden; }
@@ -660,18 +661,17 @@ em { color: #eac396; }
 }
 
 @media (max-width: 760px) {
-  .coffee-story__viewport::after { left: auto; right: -115px; top: 10%; width: 280px; opacity: .15; }
+  .coffee-story__viewport::after { left: auto; right: -95px; top: 10%; width: 280px; opacity: .28; }
   .origins-preview::before { right: -105px; top: 35px; width: 240px; opacity: .24; }
-  .journey-preview::before { right: -120px; top: 31%; width: 245px; height: 340px; opacity: .22; }
-  .inquiry-band::before { right: -120px; bottom: -120px; width: 330px; opacity: .17; }
-  .page-intro::before { right: -100px; top: 10%; width: 260px; opacity: .12; }
+  .journey-preview::before { right: -65px; top: 31%; width: 245px; height: 340px; opacity: .34; }
+  .inquiry-band::before { right: -85px; bottom: -115px; width: 330px; opacity: .24; }
+  .page-intro::before { right: -65px; top: 10%; width: 260px; opacity: .23; }
   .coffee-story__reduced article:first-child::before { left: auto; right: -100px; top: 5%; width: 255px; opacity: .12; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .coffee-story__viewport::after { animation: none; }
 }
-
 
 /* Accessibility hardening: preserve the visual dots while making the whole control touch-friendly. */
 .footer-invitation .button.button--primary {
@@ -716,4 +716,95 @@ em { color: #eac396; }
 @media (max-width: 760px) {
   .coffee-story__nav { right: 8px; bottom: 6px; }
   .coffee-story__nav button { width: 44px; height: 44px; }
+}
+
+/* A single dimensional green bean connects the origin portfolio to the buyer journey. */
+.green-bean-feature {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--cream);
+  background: radial-gradient(ellipse at 73% 48%, #315541 0%, #173728 36%, #0b241a 72%), #0b241a;
+  border-block: 1px solid #e2dabd26;
+}
+.green-bean-feature::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .14;
+  background-image: radial-gradient(#e7e3c3 0.5px, transparent 0.7px);
+  background-size: 7px 7px;
+  mask-image: linear-gradient(90deg, transparent, #000 55%);
+}
+.green-bean-feature__inner {
+  position: relative;
+  min-height: 680px;
+  display: grid;
+  grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr);
+  align-items: center;
+  gap: clamp(24px, 5vw, 90px);
+  padding-block: 55px;
+}
+.green-bean-feature__copy { position: relative; z-index: 2; max-width: 570px; }
+.green-bean-feature__copy .kicker { margin-bottom: 28px; color: #f3b987; }
+.green-bean-feature__copy h2 { font-size: clamp(3.5rem, 5.4vw, 6.6rem); line-height: .99; letter-spacing: -.055em; margin-bottom: 29px; }
+.green-bean-feature__copy h2 em { color: #edbd8d; }
+.green-bean-feature__copy p { max-width: 470px; color: #d8e2d1; font-size: clamp(1rem, 1.18vw, 1.16rem); line-height: 1.62; }
+.green-bean-feature__rule { display: block; width: 70px; height: 1px; margin: 37px 0 19px; background: #eabb8d; }
+.green-bean-feature__note, .green-bean-feature__interaction-hint { color: #dacfb3; font-size: .61rem; font-weight: 800; letter-spacing: .17em; }
+.green-bean-feature__stage { position: relative; width: 100%; min-height: 570px; aspect-ratio: 1; max-height: 680px; display: grid; place-items: center; touch-action: pan-y; cursor: grab; user-select: none; }
+.green-bean-feature__stage.is-dragging { cursor: grabbing; }
+.green-bean-feature__stage:focus-visible { outline: 2px solid #f2c89d; outline-offset: 4px; }
+.green-bean-feature__halo { position: absolute; inset: 15%; border-radius: 50%; background: radial-gradient(circle, #d9d5a443 0%, #9aac7540 31%, transparent 69%); filter: blur(24px); }
+.green-bean-feature__ring { position: absolute; inset: 7%; border: 1px solid #dddec063; border-radius: 50%; pointer-events: none; }
+.green-bean-feature__ring--outer { inset: 0; border-style: dashed; opacity: .32; }
+.green-bean-feature__ring--inner::after { content: ''; position: absolute; top: 22%; left: 4%; width: 7px; height: 7px; border-radius: 50%; background: #f4e9c5; box-shadow: 0 0 19px #f4e9c5; }
+.green-bean-feature__canvas, .green-bean-feature__fallback { position: absolute; inset: 0; width: 100%; height: 100%; }
+.green-bean-feature__canvas { z-index: 2; opacity: 0; transition: opacity .45s ease; filter: drop-shadow(0 22px 25px #020e0b8c); }
+.green-bean-feature__stage.is-ready .green-bean-feature__canvas { opacity: 1; }
+.green-bean-feature__fallback { z-index: 1; padding: 8%; filter: drop-shadow(0 28px 29px #03110ca8); transition: opacity .3s ease; }
+.green-bean-feature__stage.is-ready .green-bean-feature__fallback { opacity: 0; }
+.green-bean-feature__a11y-help { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.green-bean-feature__interaction-hint { position: absolute; z-index: 3; bottom: 5%; left: 2%; pointer-events: none; }
+.green-bean-feature__hint-touch { display: none; }
+.green-bean-feature__turn { position: absolute; z-index: 3; right: 2%; bottom: 3%; min-height: 38px; display: inline-flex; align-items: center; gap: 12px; padding: 8px 11px; border: 1px solid #e7ddbd72; background: #092119b8; color: #f4eacf; font-size: .61rem; font-weight: 800; letter-spacing: .12em; cursor: pointer; transition: background .2s ease, border-color .2s ease; }
+.green-bean-feature__turn span { font-size: 1.12rem; line-height: 1; }
+.green-bean-feature__turn:hover, .green-bean-feature__turn:focus-visible { background: #315740; border-color: #f4eacf; }
+.green-bean-feature__stage:not(.is-ready) .green-bean-feature__interaction-hint,
+.green-bean-feature__stage:not(.is-ready) .green-bean-feature__turn { opacity: 0; pointer-events: none; }
+
+@media (hover: none) {
+  .green-bean-feature__hint-desktop { display: none; }
+  .green-bean-feature__hint-touch { display: inline; }
+}
+
+@media (max-width: 900px) {
+  .green-bean-feature__inner { min-height: 600px; gap: 16px; }
+  .green-bean-feature__stage { min-height: 440px; }
+  .green-bean-feature__copy h2 { font-size: clamp(3rem, 6vw, 5.2rem); }
+}
+
+@media (max-width: 760px) {
+  .green-bean-feature__inner { display: flex; flex-direction: column; align-items: stretch; min-height: 0; padding-block: 76px 57px; gap: 14px; }
+  .green-bean-feature__copy { max-width: 580px; }
+  .green-bean-feature__copy .kicker { margin-bottom: 18px; }
+  .green-bean-feature__copy h2 { font-size: clamp(3.15rem, 10.7vw, 5rem); margin-bottom: 18px; }
+  .green-bean-feature__copy p { font-size: .96rem; margin-bottom: 0; }
+  .green-bean-feature__rule { margin: 24px 0 15px; }
+  .green-bean-feature__stage { align-self: center; width: min(100%, 530px); min-height: 0; margin-top: 5px; }
+  .green-bean-feature__canvas, .green-bean-feature__fallback { transform: scale(1.12); }
+  .green-bean-feature__interaction-hint { font-size: .49rem; left: 1%; }
+  .green-bean-feature__turn { right: 1%; bottom: 2%; min-height: 34px; padding: 6px 8px; font-size: .53rem; }
+}
+
+@media (max-width: 400px) {
+  .green-bean-feature__inner { padding-top: 65px; }
+  .green-bean-feature__copy h2 { font-size: clamp(2.7rem, 10.2vw, 3.7rem); }
+  .green-bean-feature__stage { width: min(100%, 390px); }
+  .green-bean-feature__note { font-size: .53rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .green-bean-feature__canvas, .green-bean-feature__fallback { transition: none; }
 }
