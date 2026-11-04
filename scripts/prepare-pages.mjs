@@ -80,3 +80,6 @@ if (isGitHubPages) {
     `User-agent: *\nAllow: /\n\nSitemap: ${siteBase}/sitemap.xml\n`,
   );
 }
+
+// Generate the unlisted NFC contact download without adding it to the sitemap.
+await import('./prepare-firaol-contact.mjs');

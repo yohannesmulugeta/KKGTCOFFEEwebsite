@@ -1,0 +1,12 @@
+import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import {resolve} from 'node:path';
+const root=resolve(import.meta.dirname,'..');
+const destination=resolve(root,'dist/connect/firaol');
+mkdirSync(destination,{recursive:true});
+const escape=value=>value.replace(/\\/g,'\\\\').replace(/\r?\n/g,'\\n').replace(/;/g,'\\;').replace(/,/g,'\\,');
+const photo=readFileSync(resolve(root,'public/connect/firaol/portrait.jpg')).toString('base64');
+const note='KKGT Coffee connects buyers with Ethiopian green coffee origins through KKGT Import Export. Contact us to discuss origin, process, grade, quantity, destination and current availability.\nOffice: Yobek Commercial Center, 7th Floor, Office 703A, Sengatera, Lideta, Addis Ababa, Ethiopia.';
+const lines=['BEGIN:VCARD','VERSION:3.0','N:Kelbesa;Firaol;;;','FN:Firaol Kelbesa','ORG:KKGT Coffee;KKGT Import Export','TITLE:General Manager','TEL;TYPE=WORK,CELL:+251991828202','EMAIL;TYPE=WORK:Kkgtimportexport@gmail.com','EMAIL;TYPE=WORK:Importexportkkgt@gmail.com','URL:https://kkgtcoffee.com/','ADR;TYPE=WORK:;;Yobek Commercial Center\\, 7th Floor\\, Office 703A\\, Sengatera\\, Lideta;Addis Ababa;;;Ethiopia',`PHOTO;ENCODING=b;TYPE=JPEG:${photo}`,`NOTE:${escape(note)}`,'END:VCARD'];
+const fold=line=>{let result='',bytes=0;for(const c of line){const n=Buffer.byteLength(c);if(bytes+n>75){result+='\r\n ';bytes=1;}result+=c;bytes+=n;}return result;};
+writeFileSync(resolve(destination,'firaol-kelbesa.vcf'),lines.map(fold).join('\r\n')+'\r\n');
+console.log('Prepared Firaol contact: portrait, General Manager, phone, emails and company note.');
