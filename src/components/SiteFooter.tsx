@@ -14,6 +14,6 @@ export function SiteFooter() {
       <div><span className="kicker">DISCOVER</span><Link to="/journey">Journey / Quality</Link><Link to="/gallery">Gallery</Link><Link to="/about">About KKGT</Link></div>
       <div><span className="kicker">CONTACT</span><a href={`mailto:${company.email}`}><Mail size={15} aria-hidden="true" /> {company.email}</a><a href={`tel:${company.phoneHref}`}><Phone size={15} aria-hidden="true" /> {company.phone}</a><a href={company.corporateUrl} target="_blank" rel="noopener noreferrer">KKGT Import Export <ArrowUpRight size={15} aria-hidden="true" /></a></div>
     </div>
-    <div className="wrap footer-bottom"><span>© {new Date().getFullYear()} KKGT Coffee</span><span>Illustrative imagery · Addis Ababa, Ethiopia</span></div>
+    <div className="wrap footer-bottom"><span>© {new Date().getFullYear()} KKGT Coffee</span><span>Illustrative imagery · Addis Ababa, Ethiopia</span><span className="developer-credit">Designed &amp; developed by <a href="https://admakidigital.com" target="_blank" rel="nofollow noopener noreferrer">ADMAKI Digital</a></span></div>
   </footer>;
 }
