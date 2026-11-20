@@ -27,4 +27,11 @@ for (const url of urls) {
   const robotsMeta = html.match(/<meta name="robots" content="([^"]+)"/)?.[1] ?? '';
   if (robotsMeta.includes('noindex')) throw new Error(`Sitemap URL marked noindex: ${url.pathname}`);
 }
-console.log(`SEO HTML checks passed for ${urls.length} routes`);
+const notFound = readFileSync(resolve(root, '404.html'), 'utf8');
+const notFoundRobots = notFound.match(/<meta name="robots" content="([^"]+)"/)?.[1] ?? '';
+if (!notFoundRobots.includes('noindex')) throw new Error('404 page must be noindex');
+const expectedRoutes = ['/coffee/guji/', '/coffee/yirgacheffe/', '/coffee/sidama/', '/coffee/limmu/', '/coffee/jimma/', '/coffee/lekempti/'];
+for (const route of expectedRoutes) {
+  if (!urls.some(url => url.pathname === route)) throw new Error(`Missing origin from sitemap: ${route}`);
+}
+console.log(`SEO HTML checks passed for ${urls.length} routes, including 404 and origin coverage`);
