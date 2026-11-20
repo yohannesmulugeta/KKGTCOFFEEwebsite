@@ -59,7 +59,51 @@ function injectMeta(html, route, noindex = false) {
     .replace(/<meta name="twitter:image" content="[^"]*" \/>/i, `<meta name="twitter:image" content="${escapeHtml(image)}" />`);
 }
 
-writeFileSync(resolve(outputRoot, 'index.html'), injectMeta(baseHtml, '/'));
+
+const originNames = {
+  guji: 'Guji', yirgacheffe: 'Yirgacheffe', sidama: 'Sidama',
+  limmu: 'Limmu', jimma: 'Jimma / Djimmah', lekempti: 'Nekemte',
+};
+const publicLinks = [
+  ['/', 'Home'], ['/coffee/', 'Green coffee'], ['/origins/', 'Coffee origins'],
+  ['/journey/', 'Buyer journey'], ['/about/', 'About'], ['/contact/', 'Contact'],
+];
+function readablePageContent(route) {
+  const originKey = route.split('/')[2];
+  const originName = route.startsWith('/coffee/') ? originNames[originKey] : null;
+  const heading = originName
+    ? `${originName} Ethiopian Green Coffee | KKGT Coffee`
+    : ({
+      '/': 'KKGT Coffee — Ethiopian Green Coffee Origins',
+      '/coffee': 'Ethiopian Green Coffee for Wholesale Buyers',
+      '/origins': 'Explore Ethiopian Coffee Origins',
+      '/journey': 'From Coffee Origin to Buyer Inquiry',
+      '/gallery': 'KKGT Coffee Gallery',
+      '/about': 'About KKGT Coffee',
+      '/contact': 'Contact KKGT Coffee',
+    }[route] ?? 'KKGT Coffee');
+  const description = originName
+    ? `Explore ${originName} coffee with KKGT. Ask about current green coffee lots, process, grade, crop year, quantity, packing, and availability before making purchasing decisions.`
+    : ({
+      '/': 'KKGT Coffee presents Ethiopian green coffee origins for wholesale and international buyers. Explore Guji, Yirgacheffe, Sidama, Limmu, Jimma, and Nekemte, then contact KKGT Import Export to discuss current availability and your buying requirements.',
+      '/coffee': 'Explore Ethiopian green coffee origins and contact KKGT Import Export about current lots, specifications, quantities, and export inquiries.',
+      '/origins': 'Explore Guji, Yirgacheffe, Sidama, Limmu, Jimma, and Nekemte green coffee origins. Current lot specifications and availability are confirmed per inquiry.',
+      '/journey': 'Start with a coffee origin, share your requirements, review confirmed lot information, and coordinate commercial and shipment details with KKGT.',
+      '/gallery': 'Explore illustrative Ethiopian coffee imagery and discover the origins presented by KKGT Coffee.',
+      '/about': 'KKGT Coffee is the Ethiopian green coffee website for KKGT Import Export, connecting wholesale buyers with information about coffee origins and inquiries.',
+      '/contact': 'Contact KKGT Import Export about Ethiopian green coffee. Include your preferred origin, quantity, destination, timing, and required specifications.',
+    }[route] ?? 'Explore Ethiopian green coffee origins with KKGT Coffee.');
+  const links = publicLinks.map(([url, label]) => `<a href="${url}">${escapeHtml(label)}</a>`).join(' · ');
+  const originsList = Object.entries(originNames).map(([slug, name]) => `<li><a href="/coffee/${slug}/">${escapeHtml(name)} coffee</a></li>`).join('');
+  return `<main id="seo-readable-content" style="max-width:72rem;margin:3rem auto;padding:1.5rem;font:inherit;color:inherit"><h1>${escapeHtml(heading)}</h1><p>${escapeHtml(description)}</p><nav aria-label="Website pages">${links}</nav><h2>Ethiopian green coffee origins</h2><ul>${originsList}</ul><p>For current lot details and wholesale inquiries, <a href="/contact/">contact KKGT Coffee</a>.</p></main>`;
+}
+function injectReadableContent(html, route) {
+  // This initial HTML is useful without JavaScript. React replaces it on startup,
+  // preserving the original visual design and client-side interactions.
+  return html.replace('<div id="root"></div>', `<div id="root">${readablePageContent(route)}</div>`);
+}
+
+writeFileSync(resolve(outputRoot, 'index.html'), injectReadableContent(injectMeta(baseHtml, '/'), '/'));
 writeFileSync(resolve(outputRoot, '404.html'), injectMeta(baseHtml, '/404', true));
 
 for (const match of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)) {
@@ -69,7 +113,7 @@ for (const match of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)) {
 
   const routeDirectory = resolve(outputRoot, route.replace(/^\/+/, ''));
   mkdirSync(routeDirectory, { recursive: true });
-  writeFileSync(resolve(routeDirectory, 'index.html'), injectMeta(baseHtml, route));
+  writeFileSync(resolve(routeDirectory, 'index.html'), injectReadableContent(injectMeta(baseHtml, route), route));
 }
 
 if (isGitHubPages) {
